@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+ 
+ @{
+          ViewBag.Title = "Movies";
+          Layout = "~/Views/Shared/_Layout.cshtml";
+      }
+ 
+<h2>Movies</h2>
+
+
+<table id="Movies" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Movie</th>
+        <th>Genre</th>
+       
+
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@section scripts
+{
+
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+
+    <!-- #region datatables files -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.min.css"/>
+    <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+            integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+            crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $("#Movies").DataTable({
+                ajax: {
+                    url: "/api/Movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+        });
+
+    </script>
+}
